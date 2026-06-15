@@ -2,9 +2,24 @@ import { useRef, useCallback } from "react";
 import { useAvatarStore } from "@/store";
 
 const AUDIO_FILES = [
-  "/audio/sample-1.mp3",
-  "/audio/sample-2.mp3",
-  "/audio/sample-3.mp3",
+  "/audio/chubby_0.mp3",
+  "/audio/chubby_1.mp3",
+  "/audio/chubby_2.mp3",
+  "/audio/phoeba_chubby_0.mp3",
+  "/audio/phoeba_chubby_1.mp3",
+  "/audio/phoeba_chubby_2.mp3",
+  "/audio/phoeba_chubby_3.mp3",
+  "/audio/phoebe_0.mp3",
+  "/audio/phoebe_1.mp3",
+  "/audio/phoebe_2.mp3",
+  "/audio/phoebe_chubby_0.mp3",
+  "/audio/phoebe_chubby_1.mp3",
+  "/audio/phoebe_chubby_2.mp3",
+  "/audio/phoebe_chubby_3.mp3",
+  "/audio/phoebe_chubby_4.mp3",
+  "/audio/phoebe_chubby_5.mp3",
+  "/audio/phoebe_chubby_6.mp3",
+  "/audio/phoebe_chubby_7.mp3",
 ];
 
 export function useAudioPlayer() {

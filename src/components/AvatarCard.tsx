@@ -2,8 +2,8 @@ import { useState, useCallback } from "react";
 import { useAvatarStore } from "@/store";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 import { cn } from "@/lib/utils";
-import frontImg from "@/assets/avatar-front.svg";
-import backImg from "@/assets/avatar-back.svg";
+import frontImg from "@/assets/home.png";
+import backImg from "@/assets/original.png";
 
 export function AvatarCard() {
   const { isFlipped, flip } = useAvatarStore();
@@ -21,30 +21,23 @@ export function AvatarCard() {
     }
   }, [isFlipped, flip, play]);
 
-  const handleFlipBack = useCallback(() => {
-    setIsJelly(true);
-    setTimeout(() => setIsJelly(false), 200);
-    flip();
-  }, [flip]);
-
   return (
     <div className="avatar-container group flex flex-col items-center">
       <div
         className={cn(
           "avatar-flip relative cursor-pointer",
-          "w-40 h-40 md:w-32 md:h-32 sm:w-24 sm:h-24",
+          "w-80 h-80 md:w-64 md:h-64 sm:w-48 sm:h-48",
           isJelly && "avatar-jelly"
         )}
         style={{ perspective: "1000px" }}
-        onClick={isFlipped ? handleFlipBack : handleClick}
+        onClick={handleClick}
         role="button"
         tabIndex={0}
         aria-label={isFlipped ? "点击播放音乐" : "点击翻转头像"}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            if (isFlipped) handleFlipBack();
-            else handleClick();
+            handleClick();
           }
         }}
       >
@@ -62,7 +55,7 @@ export function AvatarCard() {
           <img
             src={frontImg}
             alt="头像正面"
-            className="w-full h-full object-cover rounded-full grayscale"
+            className="w-full h-full object-cover rounded-full"
             loading="eager"
           />
         </div>
@@ -70,7 +63,7 @@ export function AvatarCard() {
         {/* 背面 */}
         <div
           className={cn(
-            "avatar-face avatar-back absolute inset-0 rounded-full overflow-hidden",
+            "avatar-face avatar-back absolute -inset-10",
             "transition-transform duration-500 ease-in-out",
             !isFlipped && "[transform:rotateY(-180deg)]"
           )}
@@ -79,7 +72,7 @@ export function AvatarCard() {
           <img
             src={backImg}
             alt="头像背面"
-            className="w-full h-full object-cover rounded-full grayscale"
+            className="w-full h-full object-contain"
             loading="lazy"
           />
         </div>

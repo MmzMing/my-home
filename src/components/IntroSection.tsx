@@ -16,11 +16,10 @@ export function IntroSection() {
   return (
     <section className="intro-section flex flex-col items-center text-center max-w-[680px] mx-auto px-6">
       <h1 className="font-display text-3xl md:text-2xl sm:text-xl text-white mb-4 tracking-tight">
-        创意协作 · 信息对齐
+        MmzMing
       </h1>
       <p className="font-body text-base md:text-sm sm:text-xs text-white/70 leading-relaxed md:leading-relaxed">
-        一个聚焦头脑风暴与信息对齐的聚合空间。在这里，灵感交汇，思路对齐，
-        让每一次协作都从清晰的认知开始。
+        欢迎来我博客做客哦
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-3">
         {featuresConfig.features.map((feature) => {

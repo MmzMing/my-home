@@ -120,11 +120,12 @@ export function CircularMenu() {
     <>
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-black/20",
+          "fixed inset-0 z-40 bg-black/20 touch-none",
           "transition-opacity duration-300",
           isOpen || isClosing ? "opacity-100" : "opacity-0"
         )}
         onClick={closeMenu}
+        onTouchEnd={(e) => { e.preventDefault(); closeMenu(); }}
         aria-hidden="true"
       />
       <div

@@ -2,15 +2,18 @@ import { useState, useRef, useCallback } from "react";
 import { useMenuStore } from "@/store";
 
 const LONG_PRESS_DURATION = 500;
+const MOVE_TOLERANCE = 10;
 
 export function useCircularMenu() {
   const { isOpen, position, openMenu, closeMenu } = useMenuStore();
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const startPosRef = useRef<{ x: number; y: number } | null>(null);
   const [isPressed, setIsPressed] = useState(false);
 
   const startPress = useCallback(
     (clientX: number, clientY: number) => {
       setIsPressed(true);
+      startPosRef.current = { x: clientX, y: clientY };
       timerRef.current = setTimeout(() => {
         openMenu(clientX, clientY);
         setIsPressed(false);
@@ -24,6 +27,7 @@ export function useCircularMenu() {
       clearTimeout(timerRef.current);
       timerRef.current = null;
     }
+    startPosRef.current = null;
     setIsPressed(false);
   }, []);
 
@@ -41,10 +45,24 @@ export function useCircularMenu() {
 
   const handleTouchStart = useCallback(
     (e: React.TouchEvent) => {
+      if (isOpen) return;
       const touch = e.touches[0];
       startPress(touch.clientX, touch.clientY);
     },
-    [startPress]
+    [isOpen, startPress]
+  );
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      if (!startPosRef.current) return;
+      const touch = e.touches[0];
+      const dx = touch.clientX - startPosRef.current.x;
+      const dy = touch.clientY - startPosRef.current.y;
+      if (Math.sqrt(dx * dx + dy * dy) > MOVE_TOLERANCE) {
+        cancelPress();
+      }
+    },
+    [cancelPress]
   );
 
   const handleTouchEnd = useCallback(() => {
@@ -58,6 +76,7 @@ export function useCircularMenu() {
     closeMenu,
     handleContextMenu,
     handleTouchStart,
+    handleTouchMove,
     handleTouchEnd,
   };
 }

@@ -10,26 +10,29 @@ export default function Home() {
   const {
     handleContextMenu,
     handleTouchStart,
+    handleTouchMove,
     handleTouchEnd,
   } = useCircularMenu();
 
   return (
     <div
-      className="relative min-h-screen overflow-hidden"
+      className="relative min-h-screen overflow-hidden touch-manipulation"
       onContextMenu={handleContextMenu}
       onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
     >
       {/* 斜网格背景 - 参考 magicui 样式 */}
       <div className="fixed inset-0 pointer-events-auto overflow-hidden z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] skew-y-12">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] skew-y-6 md:skew-y-12">
           <InteractiveGridPattern
             width={40}
             height={40}
             squares={[40, 40]}
             className={cn(
               "w-full h-full",
-              "[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
+              "[mask-image:radial-gradient(min(80vw,600px)_circle_at_center,white,transparent)]"
             )}
           />
         </div>

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { cn } from "@/lib/utils";
+import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 
 interface FlipDigitProps {
   digit: string;
@@ -51,6 +52,7 @@ function FlipSeparator() {
 }
 
 export function FlipClock() {
+  const { play } = useAudioPlayer();
   const [time, setTime] = useState(() => {
     const now = new Date();
     return {
@@ -72,11 +74,16 @@ export function FlipClock() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleClick = useCallback(() => {
+    play();
+  }, [play]);
+
   return (
     <div
-      className="flip-clock flex items-center justify-center"
+      className="flip-clock flex items-center justify-center cursor-pointer select-none"
       role="timer"
-      aria-label={`当前时间 ${time.hours}:${time.minutes}:${time.seconds}`}
+      aria-label={`当前时间 ${time.hours}:${time.minutes}:${time.seconds}，点击播放音频`}
+      onClick={handleClick}
     >
       <div className="flex gap-0.5">
         <FlipDigit digit={time.hours[0]} />
