@@ -93,7 +93,6 @@ export function CircularMenu() {
 
   const getItemPosition = (index: number) => {
     const angle = (index / FIXED_ITEM_COUNT) * 360 - 90;
-    const radian = (angle * Math.PI) / 180;
     const midRadius = (innerRadius + outerRadius) * 0.58;
     const angleOffset = 22.5;
     const adjustedRadian = (angle + angleOffset) * (Math.PI / 180);

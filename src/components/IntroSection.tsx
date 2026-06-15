@@ -4,11 +4,12 @@ import {
   faBilibili,
   faQq,
 } from "@fortawesome/free-brands-svg-icons";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import featuresConfig from "@/config/features.config.json";
 import profileConfig from "@/config/profile.config.json";
 import "@/styles/intro-section.css";
 
-const ICON_MAP: Record<string, any> = {
+const ICON_MAP: Record<string, IconDefinition> = {
   Github: faGithub,
   Bilibili: faBilibili,
   QQ: faQq,
