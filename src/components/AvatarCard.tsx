@@ -71,7 +71,7 @@ export function AvatarCard() {
         <div
           className={cn(
             "avatar-flip relative cursor-pointer",
-            "w-80 h-80 md:w-64 md:h-64 sm:w-48 sm:h-48",
+            "w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80",
             isJelly && "avatar-jelly"
           )}
           style={{ perspective: "1000px" }}
