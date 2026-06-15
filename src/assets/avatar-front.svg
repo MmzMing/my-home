@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
-  <circle cx="80" cy="80" r="80" fill="#1a1a1a"/>
-  <circle cx="80" cy="60" r="28" fill="white" opacity="0.2"/>
-  <ellipse cx="80" cy="120" rx="40" ry="25" fill="white" opacity="0.2"/>
-  <text x="80" y="155" text-anchor="middle" fill="white" opacity="0.4" font-family="DM Sans" font-size="10">AVATAR</text>
-</svg>

@@ -1,26 +1,9 @@
 import { useRef, useCallback } from "react";
 import { useAvatarStore } from "@/store";
+import audioConfig from "@/config/audio.config.json";
 
-const AUDIO_FILES = [
-  "/audio/chubby_0.mp3",
-  "/audio/chubby_1.mp3",
-  "/audio/chubby_2.mp3",
-  "/audio/phoeba_chubby_0.mp3",
-  "/audio/phoeba_chubby_1.mp3",
-  "/audio/phoeba_chubby_2.mp3",
-  "/audio/phoeba_chubby_3.mp3",
-  "/audio/phoebe_0.mp3",
-  "/audio/phoebe_1.mp3",
-  "/audio/phoebe_2.mp3",
-  "/audio/phoebe_chubby_0.mp3",
-  "/audio/phoebe_chubby_1.mp3",
-  "/audio/phoebe_chubby_2.mp3",
-  "/audio/phoebe_chubby_3.mp3",
-  "/audio/phoebe_chubby_4.mp3",
-  "/audio/phoebe_chubby_5.mp3",
-  "/audio/phoebe_chubby_6.mp3",
-  "/audio/phoebe_chubby_7.mp3",
-];
+const AUDIO_FILES = audioConfig.tracks;
+const DEFAULT_VOLUME = audioConfig.volume;
 
 export function useAudioPlayer() {
   const audioRefs = useRef<HTMLAudioElement[]>([]);
@@ -30,7 +13,7 @@ export function useAudioPlayer() {
     const randomSrc =
       AUDIO_FILES[Math.floor(Math.random() * AUDIO_FILES.length)];
     const audio = new Audio(randomSrc);
-    audio.volume = 0.6;
+    audio.volume = DEFAULT_VOLUME;
     audioRefs.current.push(audio);
 
     audio.addEventListener("ended", () => {

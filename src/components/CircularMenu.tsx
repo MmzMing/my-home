@@ -7,6 +7,8 @@ import {
   RiUserLine,
   RiMailLine,
   RiGithubLine,
+  RiImageLine,
+  RiBarChartLine,
   RiCircleLine,
 } from "react-icons/ri";
 import type { IconType } from "react-icons";
@@ -22,6 +24,8 @@ const ICON_MAP: Record<string, IconType> = {
   User: RiUserLine,
   Mail: RiMailLine,
   Github: RiGithubLine,
+  Image: RiImageLine,
+  BarChart: RiBarChartLine,
 };
 
 const FIXED_ITEM_COUNT = 8;

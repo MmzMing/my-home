@@ -2,8 +2,7 @@ import { useState, useCallback } from "react";
 import { useAvatarStore } from "@/store";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 import { cn } from "@/lib/utils";
-import frontImg from "@/assets/home.png";
-import backImg from "@/assets/original.png";
+import profileConfig from "@/config/profile.config.json";
 
 export function AvatarCard() {
   const { isFlipped, flip } = useAvatarStore();
@@ -33,6 +32,7 @@ export function AvatarCard() {
         onClick={handleClick}
         role="button"
         tabIndex={0}
+        title={isFlipped ? "点击播放" : "点击翻转"}
         aria-label={isFlipped ? "点击播放音乐" : "点击翻转头像"}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -53,7 +53,7 @@ export function AvatarCard() {
           style={{ backfaceVisibility: "hidden" }}
         >
           <img
-            src={frontImg}
+            src={profileConfig.avatar.front}
             alt="头像正面"
             className="w-full h-full object-cover rounded-full"
             loading="eager"
@@ -70,17 +70,13 @@ export function AvatarCard() {
           style={{ backfaceVisibility: "hidden" }}
         >
           <img
-            src={backImg}
+            src={profileConfig.avatar.back}
             alt="头像背面"
             className="w-full h-full object-contain"
             loading="lazy"
           />
         </div>
       </div>
-
-      <span className="mt-4 text-xs text-white/60 tracking-widest uppercase select-none">
-        {isFlipped ? "点击播放" : "点击翻转"}
-      </span>
     </div>
   );
 }

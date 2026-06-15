@@ -60,8 +60,9 @@ export default function Home() {
       <CircularMenu />
 
       {/* 底部提示 */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-white/30 text-xs tracking-wider select-none pointer-events-none">
-        长按右键打开导航菜单
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/30 text-xs tracking-wider select-none pointer-events-none">
+        <span>长按右键打开导航菜单</span>
+        <span>© 2026 MmzMing 粤ICP备2026073665号-1</span>
       </div>
     </div>
   );
