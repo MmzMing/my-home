@@ -6,6 +6,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import featuresConfig from "@/config/features.config.json";
 import profileConfig from "@/config/profile.config.json";
+import "@/styles/intro-section.css";
 
 const ICON_MAP: Record<string, any> = {
   Github: faGithub,
@@ -29,10 +30,12 @@ export function IntroSection() {
             <button
               key={feature.id}
               className="social-button group flex items-center gap-2 px-5 py-2.5 rounded-full border-2 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-              style={{
-                borderColor: feature.color,
-                backgroundColor: "transparent",
-              }}
+              style={
+                {
+                  borderColor: feature.color,
+                  "--feature-color": feature.color,
+                } as React.CSSProperties
+              }
               onClick={() => {
                 if (feature.url) {
                   window.open(feature.url, "_blank", "noopener,noreferrer");
@@ -52,25 +55,15 @@ export function IntroSection() {
               >
                 {feature.label}
               </span>
-              <style>{`
-                .social-button:hover {
-                  background-color: ${feature.color}20;
-                  box-shadow: 0 0 20px ${feature.color}40;
-                }
-                .social-icon {
-                  transform-origin: center center;
-                }
-                .social-button:hover .social-icon {
-                  filter: drop-shadow(0 0 8px ${feature.color});
-                }
-                .social-button:hover .social-text {
-                  text-shadow: 0 0 10px ${feature.color};
-                }
-              `}</style>
             </button>
           );
         })}
       </div>
+      {featuresConfig.menuHint && (
+        <p className="mt-6 text-white/30 text-xs tracking-wider select-none">
+          {featuresConfig.menuHint}
+        </p>
+      )}
     </section>
   );
 }

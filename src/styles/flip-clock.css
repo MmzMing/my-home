@@ -1,0 +1,147 @@
+/* ============ Flip Clock (classic flip-card style) ============ */
+.flip-clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* responsive card metrics; ratio 2:3, font ~0.89 * height */
+  --flip-w: 32px;
+  --flip-h: 48px;
+  --flip-font: 42px;
+  --flip-gap: 3px;
+  --flip-radius: 6px;
+}
+
+@media (min-width: 640px) {
+  .flip-clock {
+    --flip-w: 40px;
+    --flip-h: 60px;
+    --flip-font: 52px;
+    --flip-gap: 4px;
+  }
+}
+
+@media (min-width: 768px) {
+  .flip-clock {
+    --flip-w: 48px;
+    --flip-h: 72px;
+    --flip-font: 64px;
+  }
+}
+
+.flip-group {
+  display: flex;
+  gap: var(--flip-gap);
+  margin: 0 var(--flip-gap);
+}
+
+.flip-separator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--flip-h) * 0.18);
+  padding: 0 2px;
+}
+
+.flip-separator span {
+  width: calc(var(--flip-h) * 0.08);
+  height: calc(var(--flip-h) * 0.08);
+  border-radius: 50%;
+  background: #ccc;
+  opacity: 0.7;
+}
+
+.flip-card {
+  position: relative;
+  width: var(--flip-w);
+  height: var(--flip-h);
+  font-size: var(--flip-font);
+  font-weight: bold;
+  line-height: var(--flip-h);
+  border-radius: var(--flip-radius);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .7);
+  perspective: 200px;
+}
+
+.flip-half {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.flip-half-top {
+  top: 0;
+  transform-origin: 50% 100%;
+  border-radius: var(--flip-radius) var(--flip-radius) 0 0;
+}
+
+.flip-half-bottom {
+  bottom: 0;
+  transform-origin: 50% 0%;
+  border-radius: 0 0 var(--flip-radius) var(--flip-radius);
+}
+
+/* the seam line along the fold */
+.flip-half-top::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(0, 0, 0, .45);
+  z-index: 5;
+}
+
+.flip-inner {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 200%;
+  color: #ccc;
+  text-shadow: 0 1px 2px #000;
+  text-align: center;
+  background-color: #333;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.flip-inner-top {
+  top: 0;
+}
+
+.flip-inner-bottom {
+  bottom: 0;
+}
+
+/* folding pieces (only while flipping) */
+.flip-card.play .flip-fold-top {
+  z-index: 3;
+  animation: flipFoldTop 0.35s linear both;
+}
+
+.flip-card.play .flip-fold-bottom {
+  z-index: 3;
+  animation: flipFoldBottom 0.35s 0.35s linear both;
+}
+
+@keyframes flipFoldTop {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+
+@keyframes flipFoldBottom {
+  0% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}

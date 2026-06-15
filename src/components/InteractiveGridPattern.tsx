@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 
 interface InteractiveGridPatternProps
@@ -19,17 +19,13 @@ export function InteractiveGridPattern({
   ...props
 }: InteractiveGridPatternProps) {
   const [horizontal, vertical] = squares;
-  const [hoveredSquare, setHoveredSquare] = useState<number | null>(null);
 
   return (
     <svg
       width="100%"
       height="100%"
       viewBox={`0 0 ${width * horizontal} ${height * vertical}`}
-      className={cn(
-        "absolute",
-        className
-      )}
+      className={cn("absolute", className)}
       {...props}
     >
       {Array.from({ length: horizontal * vertical }).map((_, index) => {
@@ -43,15 +39,10 @@ export function InteractiveGridPattern({
             width={width}
             height={height}
             className={cn(
-              "stroke-[rgba(255,255,255,0.15)] transition-all duration-100 ease-in-out not-[&:hover]:duration-1000",
-              hoveredSquare === index
-                ? "fill-[rgba(255,255,255,0.08)]"
-                : "fill-transparent",
+              "stroke-[rgba(255,255,255,0.15)] fill-transparent transition-all duration-1000 ease-in-out hover:duration-100 hover:fill-[rgba(255,255,255,0.08)]",
               squaresClassName
             )}
             strokeWidth="1"
-            onMouseEnter={() => setHoveredSquare(index)}
-            onMouseLeave={() => setHoveredSquare(null)}
           />
         );
       })}

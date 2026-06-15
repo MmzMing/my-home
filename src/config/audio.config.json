@@ -1,5 +1,10 @@
 {
   "volume": 0.6,
+  "clickRateLimit": {
+    "maxClicks": 60,
+    "windowMs": 60000
+  },
+  "maxConcurrency": 15,
   "tracks": [
     "/audio/chubby_0.mp3",
     "/audio/chubby_1.mp3",

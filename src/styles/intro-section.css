@@ -1,0 +1,22 @@
+/* ============ Intro Section (social buttons driven by --feature-color) ============ */
+.social-button {
+  --feature-color: #ffffff;
+}
+
+/* hover background + glow, using the per-button color at ~12% / ~25% alpha */
+.social-button:hover {
+  background-color: color-mix(in srgb, var(--feature-color) 12%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--feature-color) 25%, transparent);
+}
+
+.social-icon {
+  transform-origin: center center;
+}
+
+.social-button:hover .social-icon {
+  filter: drop-shadow(0 0 8px var(--feature-color));
+}
+
+.social-button:hover .social-text {
+  text-shadow: 0 0 10px var(--feature-color);
+}

@@ -1,58 +1,70 @@
-import { useState, useEffect, useCallback } from "react";
-import { cn } from "@/lib/utils";
-import { useAudioPlayer } from "@/hooks/useAudioPlayer";
+import { useState, useEffect, useRef } from "react";
+import "@/styles/flip-clock.css";
 
-interface FlipDigitProps {
-  digit: string;
-}
-
-function FlipDigit({ digit }: FlipDigitProps) {
+/**
+ * Classic flip-card clock, faithful to the docs/demo/demo-clock prototype.
+ *
+ * Each digit card is split into a static top half and bottom half (both showing
+ * the current digit). On change, two extra folding layers animate:
+ *   - foldTop:    old digit's top half, rotates 0° -> -90° (folds away)
+ *   - foldBottom: new digit's bottom half, rotates 90° -> 0° (drops in)
+ * Animation CSS lives in src/styles/flip-clock.css (.flip-card / .flip-half / @keyframes).
+ */
+function FlipDigit({ digit }: { digit: string }) {
   const [current, setCurrent] = useState(digit);
-  const [isFlipping, setIsFlipping] = useState(false);
+  const [previous, setPrevious] = useState(digit);
+  const [flipping, setFlipping] = useState(false);
+  const timer = useRef<number | null>(null);
 
   useEffect(() => {
     if (digit !== current) {
-      setIsFlipping(true);
-      const timer = setTimeout(() => {
-        setCurrent(digit);
-        setIsFlipping(false);
-      }, 150);
-      return () => clearTimeout(timer);
+      setPrevious(current);
+      setCurrent(digit);
+      setFlipping(true);
+      if (timer.current) window.clearTimeout(timer.current);
+      // 0.35s fold-down + 0.35s fold-up = 0.7s total
+      timer.current = window.setTimeout(() => setFlipping(false), 700);
     }
-  }, [digit, current]);
+    return () => {
+      if (timer.current) window.clearTimeout(timer.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [digit]);
+
+  const renderHalf = (
+    which: "top" | "bottom",
+    value: string,
+    extraClass = ""
+  ) => (
+    <div className={`flip-half flip-half-${which} ${extraClass}`}>
+      <div className={`flip-inner flip-inner-${which}`}>{value}</div>
+    </div>
+  );
 
   return (
-    <div className="flip-digit relative w-10 h-14 md:w-8 md:h-12 sm:w-7 sm:h-10 bg-white/5 rounded-lg overflow-hidden border border-white/10 shadow-lg shadow-black/50">
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span
-          className={cn(
-            "font-mono text-2xl md:text-xl sm:text-lg font-bold text-white",
-            "transition-transform duration-150 ease-in-out",
-            isFlipping
-              ? "[transform:rotateX(90deg)_scaleY(0.6)] opacity-0"
-              : "[transform:rotateX(0deg)_scaleY(1)] opacity-100"
-          )}
-          style={{ transformOrigin: "bottom center" }}
-        >
-          {current}
-        </span>
-      </div>
-      <div className="absolute top-1/2 left-0 right-0 h-px bg-white/10" />
+    <div className={`flip-card ${flipping ? "play" : ""}`}>
+      {/* static top reveals the NEW digit once foldTop(old) rotates away */}
+      {renderHalf("top", current)}
+      {/* static bottom keeps the OLD digit until foldBottom(new) drops in */}
+      {renderHalf("bottom", flipping ? previous : current)}
+
+      {/* folding layers, only meaningful while flipping */}
+      {flipping && renderHalf("top", previous, "flip-fold-top")}
+      {flipping && renderHalf("bottom", current, "flip-fold-bottom")}
     </div>
   );
 }
 
 function FlipSeparator() {
   return (
-    <div className="flex flex-col items-center justify-center gap-2 mx-1">
-      <span className="w-1.5 h-1.5 rounded-full bg-white/50" />
-      <span className="w-1.5 h-1.5 rounded-full bg-white/50" />
+    <div className="flip-separator" aria-hidden="true">
+      <span />
+      <span />
     </div>
   );
 }
 
 export function FlipClock() {
-  const { play } = useAudioPlayer();
   const [time, setTime] = useState(() => {
     const now = new Date();
     return {
@@ -63,7 +75,7 @@ export function FlipClock() {
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval = window.setInterval(() => {
       const now = new Date();
       setTime({
         hours: String(now.getHours()).padStart(2, "0"),
@@ -71,31 +83,26 @@ export function FlipClock() {
         seconds: String(now.getSeconds()).padStart(2, "0"),
       });
     }, 1000);
-    return () => clearInterval(interval);
+    return () => window.clearInterval(interval);
   }, []);
-
-  const handleClick = useCallback(() => {
-    play();
-  }, [play]);
 
   return (
     <div
-      className="flip-clock flex items-center justify-center cursor-pointer select-none"
+      className="flip-clock select-none"
       role="timer"
-      aria-label={`当前时间 ${time.hours}:${time.minutes}:${time.seconds}，点击播放音频`}
-      onClick={handleClick}
+      aria-label={`当前时间 ${time.hours}:${time.minutes}:${time.seconds}`}
     >
-      <div className="flex gap-0.5">
+      <div className="flip-group">
         <FlipDigit digit={time.hours[0]} />
         <FlipDigit digit={time.hours[1]} />
       </div>
       <FlipSeparator />
-      <div className="flex gap-0.5">
+      <div className="flip-group">
         <FlipDigit digit={time.minutes[0]} />
         <FlipDigit digit={time.minutes[1]} />
       </div>
       <FlipSeparator />
-      <div className="flex gap-0.5">
+      <div className="flip-group">
         <FlipDigit digit={time.seconds[0]} />
         <FlipDigit digit={time.seconds[1]} />
       </div>
