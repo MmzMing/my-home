@@ -1,0 +1,10 @@
+[
+  { "id": "home", "icon": "Home", "name": "首页", "url": "/", "order": 0 },
+  { "id": "blog", "icon": "BookOpen", "name": "博客", "url": "/blog", "order": 1 },
+  { "id": "projects", "icon": "FolderGit2", "name": "项目", "url": "/projects", "order": 2 },
+  { "id": "about", "icon": "User", "name": "关于", "url": "/about", "order": 3 },
+  { "id": "contact", "icon": "Mail", "name": "联系", "url": "/contact", "order": 4 },
+  { "id": "github", "icon": "Github", "name": "GitHub", "url": "https://github.com", "order": 5 },
+  { "id": "empty-1", "icon": "", "name": "", "url": "", "order": 6 },
+  { "id": "empty-2", "icon": "", "name": "", "url": "", "order": 7 }
+]

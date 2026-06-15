@@ -1,0 +1,25 @@
+{
+  "features": [
+    {
+      "id": "github",
+      "icon": "Github",
+      "label": "GitHub",
+      "url": "https://github.com/MmzMing",
+      "color": "#ffffff"
+    },
+    {
+      "id": "bilibili",
+      "icon": "Bilibili",
+      "label": "B站",
+      "url": "https://space.bilibili.com/15446538",
+      "color": "#FB7299"
+    },
+    {
+      "id": "qqgroup",
+      "icon": "QQ",
+      "label": "QQ群",
+      "url": "https://qm.qq.com/q/1102902650",
+      "color": "#12B7F5"
+    }
+  ]
+}

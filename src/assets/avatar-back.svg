@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+  <circle cx="80" cy="80" r="80" fill="#1a1a1a"/>
+  <text x="80" y="72" text-anchor="middle" fill="white" opacity="0.8" font-family="DM Sans" font-size="14" font-weight="600">♪ PLAY</text>
+  <text x="80" y="95" text-anchor="middle" fill="white" opacity="0.4" font-family="DM Sans" font-size="10">MUSIC</text>
+  <circle cx="80" cy="80" r="35" fill="none" stroke="white" stroke-width="1" opacity="0.2"/>
+  <circle cx="80" cy="80" r="50" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/>
+</svg>
