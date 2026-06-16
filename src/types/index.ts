@@ -27,6 +27,11 @@ export interface TypingFont {
   fallback: string;
 }
 
+export interface AudioTypingPair {
+  track: string;
+  phrase: string;
+}
+
 export interface TypingInstance {
   id: string;
   text: string;
@@ -37,6 +42,6 @@ export interface TypingInstance {
 
 export interface TypingState {
   instances: TypingInstance[];
-  spawnTyping: () => void;
+  spawnTyping: (text: string, font: TypingFont) => void;
   removeTyping: (id: string) => void;
 }

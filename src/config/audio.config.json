@@ -5,45 +5,36 @@
     "windowMs": 60000
   },
   "maxConcurrency": 15,
-  "tracks": [
-    "/audio/chubby_0.mp3",
-    "/audio/chubby_1.mp3",
-    "/audio/chubby_2.mp3",
-    "/audio/phoeba_chubby_0.mp3",
-    "/audio/phoeba_chubby_1.mp3",
-    "/audio/phoeba_chubby_2.mp3",
-    "/audio/phoeba_chubby_3.mp3",
-    "/audio/phoebe_0.mp3",
-    "/audio/phoebe_1.mp3",
-    "/audio/phoebe_2.mp3",
-    "/audio/phoebe_chubby_0.mp3",
-    "/audio/phoebe_chubby_1.mp3",
-    "/audio/phoebe_chubby_2.mp3",
-    "/audio/phoebe_chubby_3.mp3",
-    "/audio/phoebe_chubby_4.mp3",
-    "/audio/phoebe_chubby_5.mp3",
-    "/audio/phoebe_chubby_6.mp3",
-    "/audio/phoebe_chubby_7.mp3"
-  ],
   "typing": {
-    "phrases": [
-      "菲比~",
-      "菲比菲比~~",
-      "菲比啾比",
-      "菲八啾比！",
-      "菲八啾比！！",
-      "菲比啾比~~",
-      "菲比啾比Ciallo～(∠・ω< )⌒★"
-    ],
     "fonts": [
       { "name": "ZCOOL KuaiLe", "fallback": "cursive" },
-      { "name": "MaokenAssortedSans", "fallback": "sans-serif" },
+      { "name": "ZCOOL QingKe HuangYou", "fallback": "sans-serif" },
       { "name": "ZCOOL XiaoWei", "fallback": "serif" },
       { "name": "Noto Sans SC", "fallback": "sans-serif" }
     ],
     "maxInstances": 5,
     "charDelayMs": 120,
     "displayDurationMs": 1200,
-    "fallStaggerMs": 100
+    "fallStaggerMs": 100,
+    "pairs": [
+      { "track": "/audio/chubby_0.mp3", "phrase": "啾比~" },
+      { "track": "/audio/chubby_1.mp3", "phrase": "啾~比。" },
+      { "track": "/audio/chubby_2.mp3", "phrase": "啾比~~~~" },
+      { "track": "/audio/phoeba_chubby_0.mp3", "phrase": "菲八啾比！！！！！" },
+      { "track": "/audio/phoeba_chubby_1.mp3", "phrase": "菲八啾比！" },
+      { "track": "/audio/phoeba_chubby_2.mp3", "phrase": "菲八啾比(σ｀д′)σ" },
+      { "track": "/audio/phoeba_chubby_3.mp3", "phrase": "菲八啾比╰（‵□′）╯" },
+      { "track": "/audio/phoebe_0.mp3", "phrase": "菲比~" },
+      { "track": "/audio/phoebe_1.mp3", "phrase": "菲比ヾ(•ω•`)o" },
+      { "track": "/audio/phoebe_2.mp3", "phrase": "菲~比~~" },
+      { "track": "/audio/phoebe_chubby_0.mp3", "phrase": "菲比啾比Ciallo～(∠・ω< )⌒★" },
+      { "track": "/audio/phoebe_chubby_1.mp3", "phrase": "菲比啾比(。・ω・。)" },
+      { "track": "/audio/phoebe_chubby_2.mp3", "phrase": "菲比啾比－O－" },
+      { "track": "/audio/phoebe_chubby_3.mp3", "phrase": "菲比啾比Ciallo～(∠・ω< )⌒★" },
+      { "track": "/audio/phoebe_chubby_4.mp3", "phrase": "菲比啾比~~" },
+      { "track": "/audio/phoebe_chubby_5.mp3", "phrase": "菲比啾比(*^_^*)" },
+      { "track": "/audio/phoebe_chubby_6.mp3", "phrase": "菲比啾比(╹ڡ╹ )" },
+      { "track": "/audio/phoebe_chubby_7.mp3", "phrase": "菲比啾比(*^▽^*)" }
+    ]
   }
 }

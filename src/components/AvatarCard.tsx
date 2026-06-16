@@ -5,9 +5,16 @@ import { cn } from "@/lib/utils";
 import { Toast } from "@/components/Toast";
 import profileConfig from "@/config/profile.config.json";
 import audioConfig from "@/config/audio.config.json";
+import type { TypingFont } from "@/types";
 
 const { maxClicks: MAX_CLICKS_PER_MINUTE, windowMs: CLICK_WINDOW_MS } =
   audioConfig.clickRateLimit;
+const TYPING_PAIRS = audioConfig.typing.pairs;
+const TYPING_FONTS = audioConfig.typing.fonts;
+
+function randomItem<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
 export function AvatarCard() {
   const { isFlipped, flip } = useAvatarStore();
@@ -56,11 +63,13 @@ export function AvatarCard() {
     jellyTimerRef.current = setTimeout(() => setIsJelly(false), 200);
 
     if (isFlipped) {
-      const result = play();
+      const pair = randomItem(TYPING_PAIRS);
+      const font: TypingFont = randomItem(TYPING_FONTS);
+      const result = play(pair.track);
       if (!result.success && result.reason === "concurrency") {
         showToast("同时播放的音频太多啦，稍后再试");
       }
-      spawnTyping();
+      spawnTyping(pair.phrase, font);
     } else {
       flip();
     }

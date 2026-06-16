@@ -1,18 +1,12 @@
 import { create } from "zustand";
-import type { AvatarState, MenuState, TypingState } from "@/types";
+import type { AvatarState, MenuState, TypingState, TypingFont } from "@/types";
 import audioConfig from "@/config/audio.config.json";
 
 const TYPING = audioConfig.typing;
-const PHRASES = TYPING.phrases;
-const FONTS = TYPING.fonts;
 const MAX_INSTANCES = TYPING.maxInstances;
 
 function randomId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
-}
-
-function randomItem<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)];
 }
 
 function randomPosition() {
@@ -59,17 +53,17 @@ export const useMenuStore = create<MenuState>((set) => ({
 
 export const useTypingStore = create<TypingState>((set) => ({
   instances: [],
-  spawnTyping: () =>
+  spawnTyping: (text: string, font: TypingFont) =>
     set((state) => {
       const { x, y } = randomPosition();
       const next = [
         ...state.instances,
         {
           id: randomId(),
-          text: randomItem(PHRASES),
+          text,
           x,
           y,
-          font: randomItem(FONTS),
+          font,
         },
       ];
       if (next.length > MAX_INSTANCES) {
