@@ -18,10 +18,16 @@ const ICON_MAP: Record<string, IconDefinition> = {
 export function IntroSection() {
   return (
     <section className="intro-section flex flex-col items-center text-center max-w-[680px] mx-auto px-6">
-      <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight">
+      <h1
+        className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight"
+        data-animate="name"
+      >
         {profileConfig.name}
       </h1>
-      <p className="font-body text-xs sm:text-sm md:text-base text-white/70 leading-relaxed md:leading-relaxed mb-8">
+      <p
+        className="font-body text-xs sm:text-sm md:text-base text-white/70 leading-relaxed md:leading-relaxed mb-8"
+        data-animate="bio"
+      >
         {profileConfig.bio}
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-5">
@@ -43,6 +49,7 @@ export function IntroSection() {
                 }
               }}
               aria-label={feature.label}
+              data-animate="button"
             >
               <FontAwesomeIcon
                 icon={icon}

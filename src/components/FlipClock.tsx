@@ -89,6 +89,7 @@ export function FlipClock() {
   return (
     <div
       className="flip-clock select-none"
+      data-animate="clock"
       role="timer"
       aria-label={`当前时间 ${time.hours}:${time.minutes}:${time.seconds}`}
     >

@@ -67,7 +67,7 @@ export function AvatarCard() {
   return (
     <>
       <Toast message={toastMessage} visible={toastVisible} onClose={hideToast} />
-      <div className="avatar-container group flex flex-col items-center">
+      <div className="avatar-container group flex flex-col items-center" data-animate="avatar">
         <div
           className={cn(
             "avatar-flip relative cursor-pointer",

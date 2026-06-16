@@ -3,7 +3,7 @@
   { "id": "blog", "icon": "BookOpen", "name": "博客", "url": "https://tblog.mmzhiku.xyz/", "order": 1 },
   { "id": "imagebed", "icon": "Image", "name": "图床", "url": "https://img.mmzhiku.xyz/", "order": 2 },
   { "id": "stats", "icon": "BarChart", "name": "统计", "url": "https://stats.mmzhiku.xyz/share/uAfsjwbIKgVPjxtc", "order": 3 },
-  { "id": "empty-3", "icon": "", "name": "", "url": "", "order": 4 },
+  { "id": "resume", "icon": "User", "name": "简历", "url": "https://resume.mmzmingzsk.dpdns.org/", "order": 4 },
   { "id": "empty-4", "icon": "", "name": "", "url": "", "order": 5 },
   { "id": "empty-5", "icon": "", "name": "", "url": "", "order": 6 },
   { "id": "empty-6", "icon": "", "name": "", "url": "", "order": 7 }
