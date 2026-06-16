@@ -21,3 +21,22 @@ export interface MenuState {
   openMenu: (x: number, y: number) => void;
   closeMenu: () => void;
 }
+
+export interface TypingFont {
+  name: string;
+  fallback: string;
+}
+
+export interface TypingInstance {
+  id: string;
+  text: string;
+  x: number;
+  y: number;
+  font: TypingFont;
+}
+
+export interface TypingState {
+  instances: TypingInstance[];
+  spawnTyping: () => void;
+  removeTyping: (id: string) => void;
+}

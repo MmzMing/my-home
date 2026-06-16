@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=ZCOOL+XiaoWei&family=Noto+Sans+SC:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -63,6 +64,53 @@ body {
 .circular-menu-item {
   animation: menuAppear 300ms ease-out forwards;
   opacity: 0;
+}
+
+/* 米塔打字机效果 */
+@keyframes miside-bounce-in {
+  0% {
+    transform: scale(1);
+    margin-right: 0;
+    opacity: 0;
+  }
+  1% {
+    transform: scale(1);
+    margin-right: 0;
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.7);
+    margin-right: 20px;
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    margin-right: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes miside-jump-and-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: translateY(-20px) rotate(calc(var(--random-angle) * -1deg));
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.miside-bounce-in {
+  animation: miside-bounce-in 0.6s ease-out forwards;
+}
+
+.miside-jump-and-fall {
+  animation: miside-jump-and-fall 1s ease forwards;
 }
 
 ::-webkit-scrollbar {

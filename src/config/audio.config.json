@@ -24,5 +24,26 @@
     "/audio/phoebe_chubby_5.mp3",
     "/audio/phoebe_chubby_6.mp3",
     "/audio/phoebe_chubby_7.mp3"
-  ]
+  ],
+  "typing": {
+    "phrases": [
+      "菲比~",
+      "菲比菲比~~",
+      "菲比啾比",
+      "菲八啾比！",
+      "菲八啾比！！",
+      "菲比啾比~~",
+      "菲比啾比Ciallo～(∠・ω< )⌒★"
+    ],
+    "fonts": [
+      { "name": "ZCOOL KuaiLe", "fallback": "cursive" },
+      { "name": "MaokenAssortedSans", "fallback": "sans-serif" },
+      { "name": "ZCOOL XiaoWei", "fallback": "serif" },
+      { "name": "Noto Sans SC", "fallback": "sans-serif" }
+    ],
+    "maxInstances": 5,
+    "charDelayMs": 120,
+    "displayDurationMs": 1200,
+    "fallStaggerMs": 100
+  }
 }

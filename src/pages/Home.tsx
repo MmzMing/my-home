@@ -4,6 +4,7 @@ import { AvatarCard } from "@/components/AvatarCard";
 import { IntroSection } from "@/components/IntroSection";
 import { FlipClock } from "@/components/FlipClock";
 import { CircularMenu } from "@/components/CircularMenu";
+import { MisideTypingEffects } from "@/components/MisideTypingEffects";
 import { OpeningAnimation } from "@/components/OpeningAnimation";
 import { useCircularMenu } from "@/hooks/useCircularMenu";
 
@@ -66,6 +67,9 @@ export default function Home() {
           <span>© 2026 MmzMing 粤ICP备2026073665号-1</span>
         </div>
       </OpeningAnimation>
+
+      {/* 米塔打字机效果 */}
+      <MisideTypingEffects />
 
       {/* 右键圆形菜单 */}
       <CircularMenu />

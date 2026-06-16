@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from "react";
-import { useAvatarStore } from "@/store";
+import { useAvatarStore, useTypingStore } from "@/store";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 import { cn } from "@/lib/utils";
 import { Toast } from "@/components/Toast";
@@ -12,6 +12,7 @@ const { maxClicks: MAX_CLICKS_PER_MINUTE, windowMs: CLICK_WINDOW_MS } =
 export function AvatarCard() {
   const { isFlipped, flip } = useAvatarStore();
   const { play } = useAudioPlayer();
+  const { spawnTyping } = useTypingStore();
   const [isJelly, setIsJelly] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastVisible, setToastVisible] = useState(false);
@@ -59,10 +60,11 @@ export function AvatarCard() {
       if (!result.success && result.reason === "concurrency") {
         showToast("同时播放的音频太多啦，稍后再试");
       }
+      spawnTyping();
     } else {
       flip();
     }
-  }, [isFlipped, flip, play, showToast]);
+  }, [isFlipped, flip, play, showToast, spawnTyping]);
 
   return (
     <>
