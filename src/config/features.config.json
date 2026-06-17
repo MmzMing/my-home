@@ -1,5 +1,17 @@
 {
   "menuHint": "长按右键打开导航菜单",
+  "footer": {
+    "copyright": "© 2026 MmzMing",
+    "icp": {
+      "text": "粤ICP备2026073665号-1",
+      "url": "https://beian.miit.gov.cn/"
+    },
+    "police": {
+      "text": "粤公网安备44060602003342号",
+      "url": "https://beian.mps.gov.cn/#/query/webSearch?code=44060602003342",
+      "icon": "/备案图标.png"
+    }
+  },
   "features": [
     {
       "id": "github",

@@ -7,6 +7,10 @@ import { CircularMenu } from "@/components/CircularMenu";
 import { MisideTypingEffects } from "@/components/MisideTypingEffects";
 import { OpeningAnimation } from "@/components/OpeningAnimation";
 import { useCircularMenu } from "@/hooks/useCircularMenu";
+import featuresConfig from "@/config/features.config.json";
+
+const { footer: FOOTER_CONFIG } = featuresConfig;
+const { icp: ICP_CONFIG, police: POLICE_CONFIG } = FOOTER_CONFIG;
 
 export default function Home() {
   const {
@@ -61,10 +65,32 @@ export default function Home() {
 
         {/* 底部版权 */}
         <div
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-white/30 text-xs tracking-wider select-none pointer-events-none"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 text-white/30 text-xs tracking-wider select-none"
           data-animate="footer"
         >
-          <span>© 2026 MmzMing 粤ICP备2026073665号-1</span>
+          <span>{FOOTER_CONFIG.copyright}</span>
+          <a
+            href={ICP_CONFIG.url}
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-white/60 transition-colors"
+          >
+            {ICP_CONFIG.text}
+          </a>
+          <a
+            href={POLICE_CONFIG.url}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center hover:text-white/60 transition-colors"
+          >
+            <img
+              src={POLICE_CONFIG.icon}
+              alt=""
+              draggable={false}
+              className="h-3.5 w-auto mr-1"
+            />
+            {POLICE_CONFIG.text}
+          </a>
         </div>
       </OpeningAnimation>
 
